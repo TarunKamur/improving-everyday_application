@@ -1,0 +1,11 @@
+- job_name: 'app-node-exporter'
+
+  static_configs:
+  - targets:
+    - 13.233.34.179:31618
+
+- job_name: 'app-kube-state-metrics'
+
+  static_configs:
+  - targets:
+    - 13.233.34.179:30625

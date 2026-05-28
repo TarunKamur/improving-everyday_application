@@ -1,0 +1,33 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+
+metadata:
+  name: kibana-ingress
+  namespace: monitoring
+
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+
+spec:
+  ingressClassName: nginx
+
+  tls:
+  - hosts:
+    - kibana.golearning.site
+
+    secretName: kibana-tls
+
+  rules:
+  - host: kibana.golearning.site
+
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+
+        backend:
+          service:
+            name: kibana-kibana
+
+            port:
+              number: 5601
